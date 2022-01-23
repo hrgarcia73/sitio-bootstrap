@@ -1,3 +1,13 @@
+/*
+Cuando usamos bootstrap es importante tener en cuenta la especificidad. El camino correcto para hacer uso 
+de varios estilos segun especificidad es el uso de la cascada para dar mejor presicion acerca de a que 
+elemento le estamos aplicando los estilos y que los estilos de bootstrap no gane en especificidad.
+
+https://developer.mozilla.org/es/docs/Web/CSS/Specificity
+
+*/
+
+
 /* Fuentes */
 /* @import url('https://fonts.googleapis.com/css2?family=Mohave:wght@700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Mohave&display=swap');
@@ -19,19 +29,14 @@ html{
 }
 
 /* Header */
-.header{
-   display: flex;
-   justify-content: space-between; 
-   width: 100%;
-   height: 60px;
-   background-color:#333333;
+.header nav {
+   background-color: #333333;
    border-bottom: solid  #f58634 5px;
-   position: fixed;
-   top: 0;
    z-index: 999;
+   position: fixed;
+   width: 100%;
 }
-
-.header-logo a {
+.header-logo .navbar-brand {
    font-family: 'Mohave', sans-serif;
    font-size: 3rem;
    padding-top: 15px;
@@ -40,26 +45,11 @@ html{
    color: #f58634;
 }
 
-.menu{
-   display: flex;  /* con esto conseguí que se ponga el menú al lado del logo */
-   /*justify-content:space-between; /*con esto consigo que separen*/
-   align-items: center; /* Con esto consigo que se centren*/
+.header-logo .navbar-brand:hover {
+   color:grey;
 }
 
- menu ul{
-   margin: 0%;
-   list-style: none;
-   padding: 0%;
-}
-.menu li {
-   /* modifico los li para que queden uno al lado del otro*/
-   display: inline; 
-   /* padding: 10px;   */
-}
-
-.menu li a{
-   /* Elimino el subrayado por defecto*/
-   text-decoration: none;
+.navbar-nav .nav-item .nav-link{
    font-family: 'Mohave', sans-serif;
    font-size: 1.2rem;
    color:#fff;
@@ -69,70 +59,353 @@ html{
    transition: 0.5s;
 }
 
-.menu li :hover{
-   /* Efecto para que cuando el puntero para por el link, 
-      este cambie de color
+.navbar-nav .nav-item .nav-link:hover{
+    /* Efecto para que cuando el puntero para por el link, 
+       este cambie de color
+    */
+    background-color: #f58634;
+    color: #fff;  
+}
+
+.container-fluid .navbar-toggler{
+   border-color: #f58634;
+}
+
+/*
+El menu hamburguesa por defecto de bootstrap es negro, utilizando las cascadas logro que mi 
+CSS tenga prioridad por sobre los estilos de bootstrap y cambio el color por el de mi diseño
+*/
+.container-fluid .navbar-toggler .navbar-toggler-icon{
+   border-color: #f58634;
+   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(245, 134, 52, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Fin header*/
+
+/*Inicio Paralax*/
+.paralax{
+   position: relative;
+   /* 100% del ancho de la pantalla */
+   width: 100%;
+   /* Antes tenía 100% del viewport (alto de la vista de la ventana), 
+      con la corrección de Felipe le ponemos height: auto
    */
-   background-color: #f58634;
-   color: #fff;   
+   height: 100vh;
+   /* Imagen de fondo*/
+   background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../src/assets/img/carrousel-1.png");
+   background-attachment: fixed;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover; 
 }
 
-/*******************************************************************/
+.wellcome{
+   /* Felipe borró todo lo que tenía y aplicó flexbox correctamente*/
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   align-items: center;
+   justify-content: center;
+   padding: 20rem 0;
+}
 
-.header label{  
-   cursor: pointer;
-   display: none;
-   width: 28px;
-   height: 28px;
-   padding: 8px;
+.wellcome h1{
+   font-family: 'Mohave', sans-serif;
+   font-size: 4rem;
+   color: #fff;
+}
+/*
+Por sugerencia de Felipe, eliminamos el código correspondiente al hr
+*/
+
+.wellcome p{
+   font-family: roboto;
    font-size: 2rem;
-   color: #f58634;
-   position: fixed;
-   top: 8px;
-   left:5px;
+   font-weight: 300;
+   color: #fff;
+   margin-top: 1%;
+   text-align: center;
 }
-.header label:hover{
-   color: rgba(172, 182, 185, 0.3);
+/* Fin seccion inicio */
+
+/*Fin Paralax*/
+
+
+/* Inicio Acerca de Nosotros */
+.nosotros {
+	padding-top: 90px;
+   height: auto;
+   background-color: #f7f7f7;
 }
-#menu-toggle{
-   display: none;
+.nosotros-area {
+	background: #f7f7f7;
+	border-top: 2px solid #f58634;
+   border-bottom: 2px solid #f58634;
+	position: relative;
+   padding-top: 20%;
+}
+.titulo-area {
+	top: -35px;
+	width: 330px;
+	left: 50%;
+	margin-left: -175px;
+	position: absolute;
+}
+.nosotros-titulo {
+   font-family: 'Mohave', sans-serif;
+	background: #f7f7f7;
+	border-top: 2px solid #f58634;
+	color: #6f7678;
+	font-size: 3rem;
+	padding-top: 15px;
+	text-transform: uppercase;
+   margin: 0 10px;
+}
+.nosotros .titulo-descripcion {
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+	padding-bottom: 15px;
+	margin: 0px;
+   color: #929497;
+   text-align: center;
+   padding-bottom: 15px;
 }
 
-@media only screen and (max-width: 760px) {
-   #menu-lista {
-      display: flex;
-      position: absolute; 
-      flex-direction: column;
-      top:65px;
-      left: 0;
-      background-color:#837c7c;
-      opacity: 0.9;
-      padding: 0px;
-      margin: 0px;
-      margin-left: -70%;
-      transition: all 0.7s;
-      width: 50%;
-   }
+.nosotros .item-titulo{
+   font-family: 'Mohave', sans-serif;
+   font-size: 2rem;
+   color:#f58634; 
+   border-top:#929497 solid 1px;
+   border-bottom: #929497 solid 1px ;
+   text-align: center;
+   text-transform: uppercase;
+}
+.nosotros .item-descripcion{
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+   color: #929497;
+   text-align: left;
+}
+/* Fin de Acerca de Nosotros */
 
-   #menu-lista li{
-      border-bottom: 1px solid #fff;
+/* Inicio Seccion Soluciones */
+.soluciones-container{
+   width: 100%;
+   height: auto;
+   background-color: #fff;
+}
+.soluciones-container h2{
+   font-family: 'Mohave', sans-serif;
+   font-size: 3rem;
+   color: #929497; 
+   text-align: center;
+   padding-top: 10%;
+}
+.soluciones-area .row .soluciones-item{
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   align-items: center;
+   justify-content: center;
+   /* flex-wrap: wrap;
+   width: 100%; */
+}
+.soluciones-item img{
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+   object-fit: cover;
+   margin-bottom: 3%;
+}
+.soluciones-item p{
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+   text-align: left;
+   color: #929497;
+}
+/* Fin Seccion Soluciones */
+
+/* Seccion ultimos proyectos */
+.ultimos-proyectos-container h2{
+   font-family: 'Mohave', sans-serif;
+   font-size: 3rem;
+   color: #929497; 
+   text-align: center;
+   margin-top: 5%;
+}
+.ultimos-proyectos-item {
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   align-items: center;
+   justify-content: center;
+   /* flex-wrap: wrap; */
+}
+.ultimos-proyectos-item img{
+   width: 350px;
+   height: 250px;
+   border-bottom-left-radius: 20%;
+   border-top-right-radius: 20%;
+}
+.ultimos-proyectos-item p {
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+   color: #929497;
+   text-align: center;
+   margin-top: 1rem;
+   width: 350px;
+}
+/* Fin seccion ultimos proyectos */
+
+/* Inicio Seccion Clientes */
+.clientes-container{
+    width: 100%;
+   height: auto;
+   display: flex;
+   justify-content: flex-start;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 3%;
+}
+.clientes-container h2{
+   font-family: 'Mohave', sans-serif;
+   font-size: 3rem;
+   color: #929497; 
+   text-align: center;
+   padding: 5% 0;
+}
+.clientes-items-container{
+   margin-top: 4%;
+   margin-bottom: 4%;
+   justify-items: center;
+}
+.clientes-item{
+   display: flex;
+   justify-content: center; 
+}
+.clientes-item img{
+   width: 150px;
+   height: 80px; 
+}
+/* Fin Seccion Clientes */
+
+/* Seccion Contacto */
+.contacto-container{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 3%;
+}
+.contacto-container h2{
+   font-family: 'Mohave', sans-serif;
+   font-size: 3rem;
+   color: #929497; 
+   text-align: center;
+   margin-top: 2%;
+}
+.contacto-form-container{
+   width: 60%;
+   display: flex;
+   justify-content: flex-start;
+   /* align-items: center;  */
+   flex-wrap: wrap;
+   flex-direction: column;
+   margin-top: 3%;
+}
+.contacto-info{
+   display: flex;
+   justify-content: flex-start;
+   flex-direction: column;
+   border-bottom: #929497 solid 2px;
+   padding-bottom: 1%;
+}
+.contacto-info img{
+   width: 300px;
+   height: 80px;
+   margin-bottom: 1%;
+}
+.contacto-info p{
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+}
+.contacto-form{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   margin: 2% 0;
+}
+.contacto-form input{
+   margin: 1% 0;
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+   height: 30px;
+   border: solid  #f58634 2px;
+   color: black;
+}
+.contacto-form textarea{
+   margin: 1% 0;
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+   height: 100px;
+   border: solid  #f58634 2px;
+   color: black;
+}
+
+/* Fin seccion Contacto */
+
+/* Footer */
+.footer{
+   height: 100px;
+   width: 100%;
+   font-family: 'Mohave', sans-serif;
+   font-size: 1rem;
+   color: #fff;
+   background-color:#333333;
+   border-top: solid  #f58634 5px;
+   display: flex;
+   justify-content:center;
+   align-content: center;
+}
+.footer-texto{
+   width: 80%;
+   display: flex;
+   justify-content:space-between;
+   align-content: center;
+   flex-wrap: wrap;
+}
+/* Fin Footer */
+
+
+
+@media only screen and (min-width: 1024px){
+   /* El navbar de bootstrap usado tiene por defecto el justify-content:start, si no entiendo mal. Mi diseño requiere que los links se 
+   esten justificados al final. Tomando la idea de los ejemplos que estan con el material de estudio consigo justify-content:end
+   cuando la resolucion es grande y no necesito el menu del lado izquierdo, y justify-content:start cuando es movile para que 
+   no se rompa el navbar */
+   .navbar-expand-lg .navbar-collapse{
+      justify-content: flex-end;
+      }
       
-   }
-   #menu-lista li a{
-      display: block;
-      padding: 15px 20px;
-      font-size: 1.5rem;
-      border-radius: 0%;
-      text-align: center;
-   }
+}
 
-   #menu-toggle:checked + #menu-lista{
-      margin-left: 0%;
-   }
-   .header label{
-      display: block;
-   }
-   .header-logo a{
-      padding-left: 60px;
+@media only screen and (max-width: 768px){
+   /* Reduzco el tamaño del titulo de la seccion nosotros cuando estoy en movile*/
+      .nosotros-titulo{
+         font-size: 2rem;
+      }
+      .nosotros-area{
+         padding-top: 35%;
+      }
+      .contacto-container h2{
+         font-size: 2.5rem;
+     }
+}
+
+@media only screen and (max-width: 494px){
+   .footer-texto {
+       justify-content: center;
    }
 }
